@@ -6,7 +6,7 @@ pipeline {
 	stage('Checkout') {
             steps {
                 // Checkout code from GitHub repository
-                git url :'https://github.com/yashparmar04/Ansible_Task ', branch: 'develop'
+                git url :'https://github.com/yashparmar04/Ansible_Task.git', branch: 'develop'
 
             }
         }
