@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
 		    sh "cat Dockerfile"
-                    sh "sudo docker build -t yashparmar04/my_repo_ansible -f ${env.WORKSPACE} ."
+                    sh "sudo docker build -t yashparmar04/my_repo_ansible ."
 		    sh "sudo docker login --username yashparmar04 --password Arrow@158165"
 		    sh "sudo docker push yashparmar04/my_repo_ansible:latest"
                 }
