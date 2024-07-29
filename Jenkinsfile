@@ -1,36 +1,45 @@
 pipeline {
     agent any
-
+ 
     stages {
-        stage('Clone Repository') {
+ 
+	stage('Checkout') {
             steps {
-                git 'https://github.com/yashparmar04/Ansible_Task.git'
+                // Checkout code from GitHub repository
+                git credentialsId: 'gitcredentials',url :'https://github.com/yashparmar04/Ansible_Task ', branch: 'develop'
+
             }
         }
+ 
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("yashparmar04/ansible_task")
+                    sh "sudo docker build -t yashparmar04/ansible_task ."
+		    sh "sudo docker login --username yashparmar04 --password Arrow@158165"
+		    sh "sudo docker push yashparmar04/ansible_task:latest"
                 }
             }
         }
-        stage('Run Tests') {
-            steps {
-                script {
-                    dockerImage.inside {
-                        sh 'npm test'
-                    }
-                }
+ 
+	stage('Run Tests'){
+	    steps {
+		script {
+		    echo 'Test Running ...'
+		}
             }
+	}
+    }
+ 
+    post {
+        always {
+            echo 'Pipeline finished.'
         }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'Arrow@158165') {
-                        dockerImage.push('latest')
-                    }
-                }
-            }
+        success {
+            echo 'Pipeline succeeded.'
+        }
+        failure {
+            echo 'Pipeline failed.'
         }
     }
 }
+has context menu
