@@ -1,0 +1,17 @@
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+*.tmp
+
+# Node modules (if using Node.js)
+node_modules/
+
+# Python compiled files (if using Python)
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
