@@ -14,6 +14,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+		    sh "cat Dockerfile"
                     sh "sudo docker build -t yashparmar04/ansible_task ."
 		    sh "sudo docker login --username yashparmar04 --password Arrow@158165"
 		    sh "sudo docker push yashparmar04/ansible_task:latest"
