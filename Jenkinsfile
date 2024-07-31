@@ -1,4 +1,3 @@
-[17:17] Utsav Shah
 pipeline {
 
     agent any
