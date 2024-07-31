@@ -1,8 +1,9 @@
-# Use the official Nginx image as a base
-FROM nginx:alpine
-
-# Copy the static website files to the Nginx directory
-COPY index.html /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
+FROM openjdk:11-jdk-slim
+ 
+WORKDIR /app
+ 
+COPY . /app
+ 
+RUN javac Sample.java
+ 
+CMD ["java", "Sample"]
